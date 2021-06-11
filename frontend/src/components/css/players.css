@@ -1,0 +1,43 @@
+/*.players{
+    padding: 4rem;
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+}*/
+
+.title  
+{  
+        margin-bottom: 1 rem;  
+        padding:1 rem;  
+}  
+.img  
+{  
+
+    transition: all 0.2s linear;
+    width: 10rem;
+    height: 17rem;
+}  
+
+.container-fluid{
+    margin-top: 10rem;
+    background-color: white;
+}
+.caption{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    color: thistle;
+}
+.info{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+/*
+if anythin ever comes up
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+
+*/
