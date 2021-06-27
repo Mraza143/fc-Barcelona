@@ -1,31 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap';
+import {motion} from "framer-motion";
 import './css/trophies.css';
-import axios from  "axios";
-//import TrophyData from '../../../backend/TrophyData';
-//import TrophyData from './TrophyData';
 import { useDispatch, useSelector } from 'react-redux';
 import { listTrophies } from '../actions/trophyActions';
 import Home from './pages/Home';
 import { Link } from 'react-router-dom';
+import {useInView} from 'react-intersection-observer';
+import {useAnimation} from "framer-motion";
+import "aos/dist/aos.css";
+import Aos from 'aos';
 function Trophies() {
+
+
+
+
+  const boxVariants = {
+    hidden: { scale: 0 },
+    visible: {
+      scale: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
   const trophyList = useSelector(state=>state.trophyList);
   const {trophies , loading , error} = trophyList;
   const dispatch = useDispatch();
   useEffect(()=>{
    
     dispatch(listTrophies());
+    Aos.init({duration : 1000});
+
     return ()=>{
       //
     };
   },[] )
-  return <div className="whole">
-      
+  return <div  className="whole">      
       {trophies.map((product)=>(
 
-        <div className = "column col-lg-4  col-sm-4">
+        <div data-aos="flip-right"  className = "column col-lg-4  col-sm-4" >
+        
           <Link className='cards__item__link' to={Home}>
-          <Card className="card">
+          <Card  className="card">
           <CardImg className="cards__item__img"  top  src={product.src} alt="Card image cap" />
           <CardBody>
           <CardTitle tag="h5">{product.name}</CardTitle>
@@ -41,6 +59,14 @@ function Trophies() {
 export default Trophies;
 
 /*<div className='cards'>
+
+          initial={{ opacity: 0, x: '100vw' }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ type: 'spring', delay: 0.5 }}
+
+
+
+
       <h1>Check out these EPIC Destinations!</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
